@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>The Finish Report — Q1 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --navy:  #37465d;
+  --dark:  #2a3547;
+  --red:   #c44438;
+  --light: #dcdcdc;
+  --white: #ffffff;
+  --muted: rgba(220,220,220,0.85);
+  --text:  #dcdcdc;
+}
+
+body {
+  background: #1c1c1c;
+  font-family: 'DM Sans', sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px 20px 80px;
+}
+
+/* ── SHARED ANIMATIONS ── */
+@keyframes rise {
+  from { opacity:0; transform: translateY(28px) scale(0.99); }
+  to   { opacity:1; transform: translateY(0) scale(1); }
+}
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes lineIn {
+  from { transform: scaleX(0); transform-origin: left; }
+  to   { transform: scaleX(1); }
+}
+
+/* ── SHARED FOOTER ── */
+.footer {
+  background: rgba(15,22,32,0.85);
+  backdrop-filter: blur(12px);
+  border-top: 3px solid rgba(196,68,56,0.6);
+  height: 56px;
+  display: flex;
+  align-items: center;
+  padding: 0 44px;
+  justify-content: space-between;
+  flex-shrink: 0;
+}
+.footer-left { display: flex; align-items: center; gap: 14px; flex-shrink: 0; }
+.footer-pub { font-family: 'Playfair Display', serif; font-size: 12px; font-weight: 700; color: var(--white); letter-spacing: 0.02em; white-space: nowrap; }
+.footer-pub span { color: var(--red); }
+.footer-pipe { width: 1px; height: 16px; background: rgba(255,255,255,0.15); flex-shrink: 0; }
+.footer-right { display: flex; align-items: center; justify-content: center; flex: 1; }
+.footer-item { font-size: 10px; font-weight: 400; color: var(--muted); white-space: nowrap; letter-spacing: 0.02em; }
+.footer-item a { color: var(--muted); text-decoration: none; pointer-events: none; }
+.footer-dot { font-size: 16px; font-weight: 700; color: var(--red); opacity: 0.9; padding: 0 10px; line-height: 1; }
+
+/* ── PAGE DIVIDER ── */
+.page-divider {
+  width: 1100px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 36px 0;
+}
+.page-divider .div-line {
+  flex: 1;
+  height: 1px;
+  background: rgba(196,68,56,0.25);
+}
+.page-divider .div-label {
+  font-family: 'Playfair Display', serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(196,68,56,0.45);
+}
+
+/* ════════════════════════════════════
+   PAGE 1 — COVER
+   ════════════════════════════════════ */
+.pg1 {
+  width: 1100px;
+  height: 849px;
+  position: relative;
+  overflow: hidden;
+  border-radius: 5px;
+  box-shadow: 0 48px 120px rgba(0,0,0,0.8);
+  animation: rise 0.8s cubic-bezier(0.16,1,0.3,1) both;
+}
+
+.anim-1 { opacity: 0; animation: fadeUp 0.7s cubic-bezier(0.16,1,0.3,1) 0.20s forwards; }
+.anim-2 { opacity: 0; animation: fadeUp 0.7s cubic-bezier(0.16,1,0.3,1) 0.45s forwards; }
+.anim-3 { opacity: 0; animation: fadeUp 0.7s cubic-bezier(0.16,1,0.3,1) 0.65s forwards; }
+.anim-4 { opacity: 0; animation: fadeUp 0.7s cubic-bezier(0.16,1,0.3,1) 0.85s forwards; }
+.anim-5 { opacity: 0; animation: fadeUp 0.7s cubic-bezier(0.16,1,0.3,1) 1.05s forwards; }
+
+@keyframes stripeReveal {
+  from { transform: scaleY(0); transform-origin: top; }
+  to   { transform: scaleY(1); transform-origin: top; }
+}
+@keyframes kenBurns {
+  0%   { transform: scale(1.0) translate(0px, 0px); }
+  33%  { transform: scale(1.04) translate(-8px, -4px); }
+  66%  { transform: scale(1.06) translate(4px, -8px); }
+  100% { transform: scale(1.03) translate(-4px, 4px); }
+}
+
+.photo {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover; object-position: 68% center;
+  filter: brightness(0.68) saturate(0.95);
+  will-change: transform;
+}
+.overlay-left {
+  position: absolute; inset: 0;
+  background: linear-gradient(100deg, rgba(42,53,71,0.93) 0%, rgba(42,53,71,0.88) 35%, rgba(42,53,71,0.65) 55%, rgba(42,53,71,0.15) 74%, transparent 90%);
+}
+.overlay-bottom {
+  position: absolute; bottom: 0; left: 0; right: 0; height: 180px;
+  background: linear-gradient(to top, rgba(20,28,40,0.92), transparent);
+}
+.red-stripe {
+  position: absolute; top: 0; left: 370px;
+  width: 3px; height: calc(100% - 56px);
+  background: linear-gradient(to bottom, transparent 0%, var(--red) 12%, var(--red) 88%, transparent 100%);
+  opacity: 0.9;
+  animation: stripeReveal 1.2s cubic-bezier(0.16,1,0.3,1) 0.3s both;
+}
+.ci { transition: padding-left 0.2s ease; cursor: default; }
+.ci:hover { padding-left: 6px; }
+.ci:hover .ci-num { opacity: 1; color: var(--red); }
+.ci:hover span { opacity: 1; color: var(--white); }
+.layer { position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: space-between; }
+.top-row { display: flex; align-items: flex-start; justify-content: space-between; padding: 36px 44px 0; position: relative; z-index: 2; }
+.pg1 .logo img { width: 185px; height: auto; display: block; }
+.issue-flag { display: flex; flex-direction: column; align-items: flex-end; gap: 5px; }
+.issue-flag .flag-top { font-size: 9px; font-weight: 600; letter-spacing: 0.24em; text-transform: uppercase; color: rgba(220,220,220,0.9); }
+.issue-flag .flag-quarter { font-family: 'Playfair Display', serif; font-size: 13px; font-weight: 700; color: var(--red); letter-spacing: 0.1em; }
+.hero-text { padding: 0 44px; display: flex; flex-direction: column; gap: 0; max-width: 520px; position: relative; z-index: 2; }
+.hero-kicker { display: flex; align-items: center; gap: 10px; margin-bottom: 18px; }
+.hero-kicker .kicker-line { width: 32px; height: 1.5px; background: var(--red); }
+.hero-kicker span { font-size: 9px; font-weight: 600; letter-spacing: 0.26em; text-transform: uppercase; color: var(--red); }
+.hero-pub { font-family: 'Playfair Display', serif; font-size: 18px; font-weight: 400; font-style: italic; color: rgba(255,255,255,0.85); letter-spacing: 0.04em; margin-bottom: 6px; }
+.hero-title { font-family: 'Playfair Display', serif; font-size: 86px; font-weight: 900; color: var(--white); line-height: 0.88; letter-spacing: -0.03em; margin-bottom: 22px; }
+.hero-title .accent { color: var(--red); }
+.hero-sub { font-size: 10px; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(220,220,220,0.9); margin-bottom: 32px; padding-left: 2px; }
+.contents-row { display: flex; flex-direction: column; gap: 0; }
+.contents-label { font-size: 8.5px; font-weight: 800 !important; letter-spacing: 0.26em; text-transform: uppercase; color: rgba(196,68,56,1); margin-bottom: 12px; }
+.contents-list { display: flex; flex-direction: column; gap: 0; }
+.ci { display: flex; align-items: center; gap: 12px; padding: 8px 0; border-top: 1px solid rgba(255,255,255,0.15); }
+.ci:last-child { border-bottom: 1px solid rgba(255,255,255,0.15); }
+.ci .ci-num { font-family: 'Playfair Display', serif; font-size: 12px; font-weight: 900; color: var(--red); opacity: 1; width: 18px; flex-shrink: 0; }
+.ci span { font-size: 11px; font-weight: 300; color: var(--light); letter-spacing: 0.02em; opacity: 1; }
+.year-ghost { position: absolute; bottom: 80px; right: 36px; display: flex; flex-direction: column; align-items: flex-end; pointer-events: none; line-height: 0.85; }
+.year-ghost .yg-year { font-family: 'Playfair Display', serif; font-size: 120px; font-weight: 900; color: rgba(255,255,255,0.30); line-height: 0.88; letter-spacing: -0.04em; }
+.year-ghost .yg-q { font-family: 'Playfair Display', serif; font-size: 52px; font-weight: 900; color: rgba(196,68,56,0.92); line-height: 0.88; letter-spacing: 0.04em; text-align: right; margin-top: -4px; }
+.pg1 .footer { position: absolute; bottom: 0; left: 0; right: 0; }
+.arc-wrap { position: absolute; top: -200px; left: -200px; width: 380px; height: 380px; pointer-events: none; z-index: 0; }
+.arc-wrap .arc { position: absolute; border-radius: 50%; border: 1.5px solid rgba(196,68,56,0.18); }
+.arc-1 { top: 0; left: 0; width: 420px; height: 420px; }
+.arc-2 { top: 30px; left: 30px; width: 360px; height: 360px; border-color: rgba(196,68,56,0.12); }
+.arc-3 { top: 65px; left: 65px; width: 290px; height: 290px; border-color: rgba(196,68,56,0.08); }
+.arc-4 { top: 100px; left: 100px; width: 220px; height: 220px; border-color: rgba(196,68,56,0.06); }
+
+/* ════════════════════════════════════
+   PAGE 2 — INDUSTRY TRENDS
+   ════════════════════════════════════ */
+.pg2 {
+  width: 1100px;
+  background: var(--navy);
+  border-radius: 5px;
+  box-shadow: 0 48px 120px rgba(0,0,0,0.75);
+  overflow: hidden;
+  animation: rise 0.8s cubic-bezier(0.16,1,0.3,1) both;
+  display: flex;
+  flex-direction: column;
+}
+
+.a1 { opacity:0; animation: fadeUp 0.6s cubic-bezier(0.16,1,0.3,1) 0.10s forwards; }
+.a2 { opacity:0; animation: fadeUp 0.6s cubic-bezier(0.16,1,0.3,1) 0.25s forwards; }
+.a3 { opacity:0; animation: fadeUp 0.6s cubic-bezier(0.16,1,0.3,1) 0.40s forwards; }
+.a4 { opacity:0; animation: fadeUp 0.6s cubic-bezier(0.16,1,0.3,1) 0.55s forwards; }
+.a5 { opacity:0; animation: fadeUp 0.6s cubic-bezier(0.16,1,0.3,1) 0.70s forwards; }
+.a6 { opacity:0; animation: fadeUp 0.6s cubic-bezier(0.16,1,0.3,1) 0.85s forwards; }
+
+.top-bar { display: flex; align-items: center; justify-content: space-between; padding: 24px 44px 20px; background: var(--dark); flex-shrink: 0; }
+.pg2 .logo img { width: 155px; height: auto; display: block; }
+.issue-flag-2 { display: flex; flex-direction: column; align-items: flex-end; gap: 4px; }
+.flag-eye { font-size: 9px; font-weight: 600; letter-spacing: 0.26em; text-transform: uppercase; color: rgba(220,220,220,0.6); }
+.flag-q { font-family: 'Playfair Display', serif; font-size: 13px; font-weight: 700; color: var(--red); letter-spacing: 0.1em; }
+.main { display: flex; height: 750px; }
+.col-left { flex: 0 0 580px; display: flex; flex-direction: column; }
+.col-left-text { padding: 26px 28px 20px 44px; flex-shrink: 0; }
+.pg-title { font-family: 'Playfair Display', serif; font-size: 38px; font-weight: 900; color: var(--white); line-height: 1.0; letter-spacing: -0.01em; text-transform: uppercase; }
+.pg-subtitle { font-size: 10px; font-weight: 600; letter-spacing: 0.28em; text-transform: uppercase; color: var(--red); margin-top: 5px; }
+.red-rule { height: 2px; width: 52px; background: var(--red); margin-top: 12px; margin-bottom: 18px; animation: lineIn 0.9s cubic-bezier(0.16,1,0.3,1) 0.5s both; }
+.text-cols { display: flex; gap: 20px; }
+.overview-col { flex: 1; }
+.issue-col { flex: 0 0 155px; }
+.col-label { font-size: 10px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--white); padding-bottom: 8px; border-bottom: 1px solid rgba(255,255,255,0.12); margin-bottom: 13px; }
+.body-copy { font-size: 12.5px; font-weight: 300; line-height: 1.5; color: var(--text); }
+.body-copy p { margin-bottom: 7px; }
+.body-copy p:last-child { margin-bottom: 0; }
+.issue-list { list-style: none; }
+.issue-list li { font-size: 12px; font-weight: 300; color: var(--text); padding: 7px 0 7px 13px; border-bottom: 1px solid rgba(255,255,255,0.07); position: relative; line-height: 1.35; cursor: default; transition: color 0.2s, padding-left 0.2s; }
+.issue-list li::before { content: ''; position: absolute; left: 0; top: 50%; transform: translateY(-50%); width: 4px; height: 4px; border-radius: 50%; background: var(--red); opacity: 0.55; transition: opacity 0.2s; }
+.issue-list li:hover { color: var(--white); padding-left: 19px; }
+.issue-list li:hover::before { opacity: 1; }
+.photo-office { flex: 1; min-height: 0; overflow: hidden; position: relative; }
+.photo-office img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 38%; filter: brightness(0.82) saturate(0.9); display: block; transition: transform 8s ease; }
+.photo-office:hover img { transform: scale(1.03); }
+.photo-office::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 6px; background: linear-gradient(to bottom, var(--navy), transparent); z-index: 1; pointer-events: none; }
+.photo-office-caption { position: absolute; bottom: 10px; right: 14px; font-size: 8px; font-style: italic; color: rgba(255,255,255,0.3); z-index: 2; }
+.col-right { flex: 1; display: flex; flex-direction: column; }
+.photo-stair { flex: 0 0 465px; overflow: hidden; position: relative; }
+.photo-stair img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 50%; filter: brightness(0.78) saturate(0.88); display: block; }
+.photo-stair::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 120px; background: linear-gradient(to top, var(--navy) 0%, transparent 100%); pointer-events: none; }
+.display-block { flex: 1; padding: 22px 26px 28px; display: flex; flex-direction: column; justify-content: flex-end; }
+.display-type { font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 900; color: var(--white); line-height: 1.35; letter-spacing: -0.02em; text-transform: lowercase; }
+.display-year { margin-top: 8px; display: flex; align-items: baseline; gap: 3px; line-height: 1; }
+.yr { font-family: 'Playfair Display', serif; font-size: 38px; font-weight: 900; color: var(--red); letter-spacing: -0.03em; }
+.q1 { font-family: 'Playfair Display', serif; font-size: 24px; font-weight: 700; color: rgba(255,255,255,0.5); }
+.display-sub { margin-top: 10px; font-size: 11px; font-weight: 300; line-height: 1.6; color: rgba(220,220,220,0.45); font-style: italic; }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════
+     PAGE 1 — COVER
+     ═══════════════════════════════════ -->
+<div class="pg1">
+
+  <img class="photo" src="Snorunt.jpg" alt="Gateway Construction Services">
+  <div class="overlay-left"></div>
+  <div class="overlay-bottom"></div>
+  <div class="red-stripe"></div>
+
+  <div class="year-ghost">
+    <div class="yg-year">2026</div>
+    <div class="yg-q">Q1</div>
+  </div>
+
+  <div class="layer">
+    <div class="arc-wrap">
+      <div class="arc arc-1"></div>
+      <div class="arc arc-2"></div>
+      <div class="arc arc-3"></div>
+      <div class="arc arc-4"></div>
+    </div>
+    <div class="top-row">
+      <div class="logo anim-1">
+        <img src="GatewayLogoWhite.png" alt="Gateway Construction Services">
+      </div>
+      <div class="issue-flag anim-1">
+        <span class="flag-top">Quarterly Newsletter &nbsp;&middot;&nbsp; Puget Sound Region</span>
+        <span class="flag-quarter">Quarter One &nbsp;2026</span>
+      </div>
+    </div>
+    <div class="hero-text">
+      <div class="hero-kicker anim-2">
+        <div class="kicker-line"></div>
+        <span>Tenant Improvement Construction</span>
+      </div>
+      <div class="hero-pub anim-3">'The Finish'</div>
+      <div class="hero-title anim-3">REPORT</div>
+      <div class="hero-sub anim-4">Puget Sound Region &nbsp;&middot;&nbsp; Q1 2026</div>
+      <div class="contents-row anim-5">
+        <div class="contents-label">In This Issue</div>
+        <div class="contents-list">
+          <div class="ci"><span class="ci-num">01</span><span>TI Construction &mdash; Regional Industry Trends</span></div>
+          <div class="ci"><span class="ci-num">02</span><span>Gateway Construction Company News</span></div>
+          <div class="ci"><span class="ci-num">03</span><span>Featured Recent Projects</span></div>
+          <div class="ci"><span class="ci-num">04</span><span>Market Outlook &amp; Forecast</span></div>
+        </div>
+      </div>
+    </div>
+    <div style="height:56px;"></div>
+  </div>
+
+  <div class="footer">
+    <div class="footer-left">
+      <div class="footer-pub">'<span>The Finish</span>' Quarterly Newsletter</div>
+      <div class="footer-pipe"></div>
+    </div>
+    <div class="footer-right">
+      <span class="footer-item">cameronm&#64;gateway&#45;ti&#46;com</span>
+      <span class="footer-dot">&middot;</span>
+      <span class="footer-item">(303) 513-5617</span>
+      <span class="footer-dot">&middot;</span>
+      <span class="footer-item">Gateway Construction Services</span>
+      <span class="footer-dot">&middot;</span>
+      <span class="footer-item">Seattle, WA 98102</span>
+    </div>
+  </div>
+
+</div>
+
+<!-- ═══════════════════════════════════
+     PAGE DIVIDER
+     ═══════════════════════════════════ -->
+<div class="page-divider">
+  <div class="div-line"></div>
+  <div class="div-label">Page 2</div>
+  <div class="div-line"></div>
+</div>
+
+<!-- ═══════════════════════════════════
+     PAGE 2 — INDUSTRY TRENDS
+     ═══════════════════════════════════ -->
+<div class="pg2">
+
+  <div class="top-bar a1">
+    <div class="logo"><img src="GatewayLogoWhite.png" alt="Gateway Construction Services"></div>
+    <div class="issue-flag-2">
+      <span class="flag-eye">The Finish — Quarterly Report</span>
+      <span class="flag-q">Q1 2026</span>
+    </div>
+  </div>
+
+  <div class="main">
+    <div class="col-left">
+      <div class="col-left-text a2">
+        <div class="pg-title">Industry Trends</div>
+        <div class="pg-subtitle">Puget Sound Region</div>
+        <div class="red-rule"></div>
+        <div class="text-cols">
+          <div class="overview-col">
+            <div class="col-label">Market Overview</div>
+            <div class="body-copy">
+              <p>Tenant improvement construction is its own ecosystem — &amp; the only one we operate in. Ground-up development, large-scale commercial new builds, infrastructure — that's not our world. Our world is commercial interiors, exclusively, across the Seattle Metro Area. And after years of building in this specific market, we've learned to read it closely.</p>
+              <p>The first quarter of 2026 gave us a lot to read.</p>
+              <p>In this issue, we're sharing what we observed on the ground this quarter — from the continued spec suite surge and what TI dollars are actually delivering right now, to tariff pressures reshaping material procurement, to why the most successful projects we saw this quarter had one thing in common: the GC was at the table early.</p>
+              <p>This is a builder's report — written for the people who design, lease, own, and occupy the commercial interiors of the Puget Sound.</p>
+            </div>
+          </div>
+          <div class="issue-col a3">
+            <div class="col-label">In This Issue</div>
+            <ul class="issue-list">
+              <li>The 'Spec Suite Boom'</li>
+              <li>The surge in second-gen;<br>old bones, new builds</li>
+              <li>Construction Cost Analysis</li>
+              <li>Tariffs &amp; trade policy impacts</li>
+              <li>Project pipeline &amp; demand signals</li>
+              <li>Permitting &amp; jurisdictional notes</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="photo-office a4">
+        <img src="LawFirmCorridor.jpg" alt="Commercial office interior">
+        <span class="photo-office-caption">Confidential Law Firm (2025)</span>
+      </div>
+    </div>
+
+    <div class="col-right">
+      <div class="photo-stair a3">
+        <img src="505FirstStairs.webp" alt="Commercial staircase">
+      </div>
+      <div class="display-block a5">
+        <div class="display-type">tenant<br>improvement<br>construction<br>insights</div>
+        <div class="display-year"><span class="yr">2026</span><span class="q1">Q1</span></div>
+        <div class="display-sub">Explore CRE industry insights through the lens of a general contractor.</div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer a6">
+    <div class="footer-left">
+      <div class="footer-pub">'<span>The Finish</span>' Quarterly Newsletter</div>
+      <div class="footer-pipe"></div>
+    </div>
+    <div class="footer-right">
+      <span class="footer-item">cameronm&#64;gateway&#45;ti&#46;com</span>
+      <span class="footer-dot">&middot;</span>
+      <span class="footer-item">(303) 513-5617</span>
+      <span class="footer-dot">&middot;</span>
+      <span class="footer-item">Gateway Construction Services</span>
+      <span class="footer-dot">&middot;</span>
+      <span class="footer-item">Seattle, WA 98102</span>
+    </div>
+  </footer>
+
+</div>
+
+<script>
+  const pg1 = document.querySelector('.pg1');
+  const photo = document.querySelector('.photo');
+  let targetX = 0, targetY = 0;
+  let currentX = 0, currentY = 0;
+
+  pg1.addEventListener('mousemove', (e) => {
+    const rect = pg1.getBoundingClientRect();
+    const cx = rect.left + rect.width / 2;
+    const cy = rect.top + rect.height / 2;
+    targetX = (e.clientX - cx) / rect.width;
+    targetY = (e.clientY - cy) / rect.height;
+  });
+
+  pg1.addEventListener('mouseleave', () => {
+    targetX = 0;
+    targetY = 0;
+  });
+
+  function animate() {
+    currentX += (targetX - currentX) * 0.06;
+    currentY += (targetY - currentY) * 0.06;
+    photo.style.transform = `translate(${-currentX * 10}px, ${-currentY * 10}px)`;
+    requestAnimationFrame(animate);
+  }
+
+  animate();
+</script>
+</body>
+</html>
